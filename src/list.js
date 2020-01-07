@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-
+import Item from './item.js'
 class App extends Component {
     constructor(props) {
         super(props)
@@ -12,15 +12,17 @@ class App extends Component {
         return (
             <Fragment>
                 <input type="text" value={this.state.value} onChange={this.handleInput.bind(this)}></input>
-                <button onClick={this.addList.bind(this)}>添加服务</button>
+                <button onClick={this.addList}>添加服务</button>
                 <ul className='pyh'>
                     {
                         this.state.list.map((item, index) => {
-                            return( 
-                                <li key={item+index}>
-                                    <span>{item}</span>
-                                    <button onClick={this.delItem.bind(this,index)}>删除</button>
-                                </li>
+                            return (
+                                <Item
+                                    key={item + index}
+                                    content={item}
+                                    index={index}
+                                    delItem={this.delItem}
+                                ></Item>
                             )
                         })
                     }
@@ -33,16 +35,16 @@ class App extends Component {
             value: e.target.value
         })
     }
-    addList(){
+    addList = () => {
         this.setState({
-            list:[...this.state.list,this.state.value]
+            list: [...this.state.list, this.state.value]
         })
     }
-    delItem(index){
+    delItem =(index)=> {
         let list = this.state.list;
-        list.splice(index,1);
+        list.splice(index, 1);
         this.setState({
-            list:list
+            list: list
         })
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 
-import App from './app.js'
+import List from './list.js'
 
-ReactDom.render(<App />, document.getElementById('root'));
+ReactDom.render(<List />, document.getElementById('root'));
